@@ -5,11 +5,9 @@
 #include <stdint.h>
 
 #include "sensesp.h"
+#include "valueproducer.h"
 
 namespace sensesp {
-
-class ValueProducer;
-template <typename T>
 
 /**
  * @brief Provides an easy way of calling a function based on
@@ -27,7 +25,6 @@ template <typename T>
  * @param function A pointer to the function that's being called.
  * */
 
-//template <typename T>
 class MultiConsumer {
  public:
   //
