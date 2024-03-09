@@ -66,7 +66,7 @@ tafin{
       "version": "^1.10.1"
     }
   ],
-  "version": "2.7.3-alpha",
+  "version": "2.7.3-1-mestafin",
   "frameworks": "arduino",
   "platforms": ["espressif32"]
 }
