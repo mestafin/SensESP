@@ -25,7 +25,8 @@ namespace sensesp {
  *    int send_delay = 30;
  *    const char* config_path = "/tanks.water_capacity";
  *    auto *capacity = new ConstantFloatSensor(send_delay,config_path);
- *    capacity->connect_to(new SKOutputFloat(sk_path, sk_config_path, sk_metadata));
+ *    capacity->connect_to(new SKOutputFloat(sk_path, sk_config_path,
+ * sk_metadata));
  *
  * To set or get the the value of the virtual sensor for use in your code:
  *
@@ -39,10 +40,10 @@ namespace sensesp {
  * @param[in] config_path Configuration path for the sensor.
  */
 
-static const char SCHEMA_CONSTANT_SENSOR[] PROGMEM = R"###({
+static const char SCHEMA_CONSTANT_SENSOR[] = R"###({
         "type": "object",
         "properties": {
-            "value": { "title": "Constant Value", "type": "number", "description": "Constant value" }
+                 "value": { "title": "Constant Value", "type": "%TYPE%", "description": "Constant value" }
         }
     })###";
 
@@ -80,13 +81,28 @@ class ConstantSensor : public SensorT<T> {
     return true;
   }
   virtual String get_config_schema() override {
-    return FPSTR(SCHEMA_CONSTANT_SENSOR);
+    String schema = SCHEMA_CONSTANT_SENSOR;
+    schema.replace("%TYPE%", sensor_type_);
+    return schema;
   }
   void update() { this->emit(value_); }
 
   T value_;
   int send_interval_;  // seconds
+
+  static const String sensor_type_;
 };
+
+template <class T>
+const String ConstantSensor<T>::sensor_type_ = "";
+template <>
+const String ConstantSensor<int>::sensor_type_;
+template <>
+const String ConstantSensor<float>::sensor_type_;
+template <>
+const String ConstantSensor<String>::sensor_type_;
+template <>
+const String ConstantSensor<bool>::sensor_type_;
 
 // ..........................................
 //  constant value sensors
