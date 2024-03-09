@@ -1,4 +1,4 @@
-tafin{
+{
   "name": "SensESP",
   "keywords": "SensESP, Signal K, marine, boat, sensor, hardware, embedded, device",
   "description": "Signal K hardware sensor development library for ESP devices",
