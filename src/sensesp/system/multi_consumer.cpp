@@ -48,4 +48,18 @@ void MultiConsumer::connect_from_int(ValueProducer<int>* producer,
   });
 }
 
+void MultiConsumer::connect_from_bool(ValueProducer<bool>* producer,
+                                     uint8_t input_channel = 0) {
+  producer->attach([producer, this, input_channel]() {
+    this->set_input_bool(producer->get(), input_channel);
+  });
+}
+
+void MultiConsumer::connect_from_float(ValueProducer<float>* producer,
+                                     uint8_t input_channel = 0) {
+  producer->attach([producer, this, input_channel]() {
+    this->set_input_float(producer->get(), input_channel);
+  });
+}
+
 }  // namespace sensesp
