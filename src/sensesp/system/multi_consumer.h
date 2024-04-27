@@ -95,8 +95,7 @@ class MultiConsumer {
 
   void connect_from_str(ValueProducer<String>* producer, uint8_t input_channel);
   void connect_from_int(ValueProducer<int>* producer, uint8_t input_channel);
-  void connect_from_float(ValueProducer<float>* producer,
-                          uint8_t input_channel);
+  void connect_from_float(ValueProducer<float>* producer, uint8_t input_channel);
   void connect_from_bool(ValueProducer<bool>* producer, uint8_t input_channel);
 
  protected:
